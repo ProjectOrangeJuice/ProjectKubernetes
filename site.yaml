@@ -1,0 +1,10 @@
+- hosts: test
+  user: oharris
+  become: true
+  become_user: root
+  vars:
+    stage: test
+  roles:
+    - upgrade
+    - guest-agent
+    - kubernetes
