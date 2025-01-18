@@ -6,15 +6,16 @@ metadata:
   name: traefik
 
 ---
-apiVersion: source.toolkit.fluxcd.io/v1
+apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: OCIRepository
 metadata:
   name: traefik
   namespace: traefik
 spec:
-  interval: 10m
+  interval: 12h
   url: oci://ghcr.io/traefik/helm/traefik
-
+  ref:
+    tag: "34.1.0"
 ---
 
 apiVersion: helm.toolkit.fluxcd.io/v2
