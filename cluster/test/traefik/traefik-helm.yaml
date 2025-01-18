@@ -32,7 +32,8 @@ spec:
   values:
     dashboard:
       enabled: true
-    log:
-      level: DEBUG  
-    accessLogs:
-      enabled: true
+    logs:
+      general:
+        level: DEBUG 
+      access:
+        enabled: true
