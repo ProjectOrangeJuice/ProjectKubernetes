@@ -31,6 +31,6 @@ spec:
   wait: true
   prune: true
   path: "./"
-  sourceRef:
+  chartRef:
     kind: OCIRepository
     name: traefik
