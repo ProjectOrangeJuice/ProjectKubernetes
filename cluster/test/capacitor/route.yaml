@@ -12,5 +12,4 @@ spec:
       kind: Rule
       services:
         - name: capacitor
-          namespace: flux-system
           port: 9000
