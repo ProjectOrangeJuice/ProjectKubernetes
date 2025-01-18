@@ -10,3 +10,8 @@
     - upgrade
     - guest-agent
     - kubernetes
+
+## Don't forget to untaint the master node if needs be
+# kubectl taint nodes --all node-role.kubernetes.io/control-plane:NoSchedule-
+
+# Metallb needs to have the no schedule taint removed from the master node too
