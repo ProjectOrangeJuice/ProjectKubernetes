@@ -24,13 +24,8 @@ metadata:
   name: traefik
   namespace: traefik
 spec:
-  targetNamespace: traefik
-  interval: 1h
-  retryInterval: 2m
-  timeout: 5m
-  wait: true
-  prune: true
-  path: "./"
+  interval: 10m
+  releaseName: traefik
   chartRef:
     kind: OCIRepository
     name: traefik
