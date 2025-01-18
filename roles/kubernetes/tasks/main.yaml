@@ -83,37 +83,30 @@
   set_fact:
     node_type: "{{ 'controller' if 'controller' in ansible_hostname else 'worker' }}"
 
-- name: Initialize Kubernetes cluster on controller node
-  command: kubeadm init --pod-network-cidr=10.244.0.0/16
-  when: node_type == 'controller'
-
-- name: Create .kube directory
-  command: mkdir -p /root/.kube
-  when: node_type == 'controller'
-
-- name: Copy kube config to user home directory
-  command: cp /etc/kubernetes/admin.conf /root/.kube/config
-  when: node_type == 'controller'
-
-- name: Install Cilium CLI
-  command: curl -L --remote-name https://github.com/cilium/cilium-cli/releases/latest/download/cilium-linux-amd64.tar.gz
-
-- name: Extract Cilium CLI
-  command: tar xzvf cilium-linux-amd64.tar.gz
-
-- name: Move Cilium CLI to /usr/local/bin
-  command: mv cilium /usr/local/bin
-
-- name: Install Cilium network plugin
-  command: cilium install
-  when: node_type == 'controller'
-
 - name: Copy join file to worker nodes
   copy:
     dest: /root/kubeadm_join_command
     src: "{{ stage }}-join"
   when: node_type != 'controller'
 
-- name: Run kubeadm join command on worker nodes
-  command: bash /root/kubeadm_join_command
+- name: Check if kubernetes is already running on worker nodes
+  command: kubectl version
+  register: k8s_nodes
+  ignore_errors: yes
   when: node_type != 'controller'
+
+- name: Run kubeadm join command on worker nodes if kubernetes is not running
+  command: bash /root/kubeadm_join_command
+  when: node_type != 'controller' and k8s_nodes.rc != 0
+
+- name: Create .kube directory
+  command: mkdir -p /root/.kube
+
+- name: Copy kube config to user home directory
+  command: cp /etc/kubernetes/kubelet.conf /root/.kube/config
+  when: node_type != 'controller' and k8s_nodes.rc != 0
+
+
+- name: If controller, run the tasks in files
+  include_tasks: controller.yaml
+  when: node_type == 'controller'

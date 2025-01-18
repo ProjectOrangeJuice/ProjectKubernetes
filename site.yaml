@@ -4,6 +4,8 @@
   become_user: root
   vars:
     stage: test
+  vars_files:
+    - priv-vars.yaml
   roles:
     - upgrade
     - guest-agent
