@@ -32,3 +32,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: longhorn
+  values:
+    defaultBackupStore:
+      backupTarget: s3://test-backup@lan/
+      backupTargetCredentialSecret: minio-secret
