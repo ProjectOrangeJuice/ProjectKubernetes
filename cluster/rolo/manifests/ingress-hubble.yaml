@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`hubble.projectkubes.com`)
+    - match: Host(`hubble.projectkube.com`)
       kind: Rule
       services:
         - name: hubble-ui

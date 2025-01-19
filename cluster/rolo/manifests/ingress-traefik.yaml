@@ -5,7 +5,7 @@ metadata:
   name: traefik-dashboard
 spec:
   routes:
-  - match: Host(`traefik.projectkubes.com`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+  - match: Host(`traefik.projectkube.com`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
     kind: Rule
     services:
     - name: api@internal
