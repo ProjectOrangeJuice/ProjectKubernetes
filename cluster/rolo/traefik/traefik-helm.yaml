@@ -30,8 +30,6 @@ spec:
     kind: OCIRepository
     name: traefik
   values:
-    serversTransport:
-      insecureSkipVerify: true
     dashboard:
       enabled: true
     logs:
