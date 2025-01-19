@@ -30,8 +30,9 @@ spec:
     kind: OCIRepository
     name: traefik
   values:
-    serversTransport:
-      insecureSkipVerify: true
+    providers:
+      kubernetesCRD:
+        allowCrossNamespace: true
     dashboard:
       enabled: true
     logs:
