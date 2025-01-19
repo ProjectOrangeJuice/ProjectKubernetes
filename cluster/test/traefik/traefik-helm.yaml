@@ -29,3 +29,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: traefik
+  values:
+    serversTransport:
+      insecureSkipVerify: true
