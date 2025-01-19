@@ -8,7 +8,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`uptime.test-kubes.com`)
+    - match: Host(`uptime.projectkube.com`)
       kind: Rule
       services:
         - name: uptime-kuma
