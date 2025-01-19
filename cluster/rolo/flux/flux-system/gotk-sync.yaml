@@ -36,7 +36,6 @@ spec:
   interval: 10m0s
   path: ./cluster/rolo/helms
   prune: true
-  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -51,7 +50,6 @@ spec:
   interval: 10m0s
   path: ./cluster/rolo/manifests
   prune: true
-  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -66,7 +64,6 @@ spec:
   interval: 10m0s
   path: ./cluster/rolo/security
   prune: true
-  wait: true
   sourceRef:
     kind: GitRepository
     name: flux-system
