@@ -1,0 +1,72 @@
+# Create memo namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: memo
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memo
+  namespace: memo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memo
+  template:
+    metadata:
+      labels:
+        app: memo
+    spec:
+      containers:
+      - name: memo
+        image: neosmemo/memos:0.23 
+        ports:
+        - containerPort: 5230
+        volumeMounts:
+        - name: memo-data
+          mountPath: /var/opt/memos
+        resources: # Allocate resources as needed
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
+      volumes:
+        - name: memo-data
+          persistentVolumeClaim:
+            claimName: memo-data-claim
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: memo-ui
+  namespace: memo
+spec:
+  selector:
+    app: memo
+  ports:
+  - protocol: TCP
+    port: 5230  # The port your service will expose
+    targetPort: 5230  # The port the container is listening on
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: memo-data-claim  # Name of your PVC
+  namespace: memo   # Same namespace as your deployment
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi  # Adjust the size as needed
+  storageClassName: longhorn-default  # use the existing one for now
