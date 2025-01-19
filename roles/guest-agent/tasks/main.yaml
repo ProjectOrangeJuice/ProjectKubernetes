@@ -6,4 +6,4 @@
 - name: Start guest agent
   service:
     name: qemu-guest-agent
-    state: enabled
+    state: started

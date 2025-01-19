@@ -11,6 +11,19 @@
     - guest-agent
     - kubernetes
 
+- hosts: rolo
+  user: oharris
+  become: true
+  become_user: root
+  vars:
+    stage: rolo
+  vars_files:
+    - priv-vars.yaml
+  roles:
+    - upgrade
+    - guest-agent
+    - kubernetes
+
 ## Don't forget to untaint the master node if needs be
 # kubectl taint nodes --all node-role.kubernetes.io/control-plane:NoSchedule-
 

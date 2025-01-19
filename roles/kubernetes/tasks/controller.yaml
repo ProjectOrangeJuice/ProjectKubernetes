@@ -47,7 +47,7 @@
   shell: '/tmp/fluxcd-installer.sh'
 
 - name: Install flux onto kubernetes cluster
-  shell: flux bootstrap github --owner={{ github_owner }} --repository=projectkubernetes --branch=main --path=./cluster/flux --personal
+  shell: flux bootstrap github --owner={{ github_owner }} --repository=projectkubernetes --branch=main --path=./cluster/{{stage}} --personal
   environment:
     GITHUB_TOKEN: "{{ github_token }}"
   when: flux_version.rc != 0
@@ -57,5 +57,5 @@
   ignore_errors: yes
 
 - name: Enable hubble with ui
-  command: cilium hubble install --ui
+  command: cilium hubble enable --ui
   ignore_errors: yes
