@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: longhorn
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`longhorn.projectkube.com`)
+      kind: Rule
+      services:
+        - name: longhorn-frontend
+          port: 80
