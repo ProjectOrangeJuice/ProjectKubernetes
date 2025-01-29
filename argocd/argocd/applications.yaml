@@ -1,6 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: argocd
   name: argocd
 spec:
   destination:
@@ -21,6 +22,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: argocd
   name: metallb
 spec:
   destination:
@@ -41,6 +43,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: argocd
   name: longhorn
 spec:
   destination:
