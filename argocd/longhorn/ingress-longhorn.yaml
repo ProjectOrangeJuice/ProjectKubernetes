@@ -1,9 +1,8 @@
----
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: longhorn
-  namespace: traefik-system
+  namespace: longhorn-system
 spec:
   entryPoints:
     - web
