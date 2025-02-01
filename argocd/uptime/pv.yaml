@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: uptime-kuma  # Name of your PV
+  namespace: uptime-kuma   # Same namespace as your deployment
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  volumeMode: Filesystem
+  nfs:
+    server: 192.168.10.10
+    path: /mnt/nfs-export/uptime-kuma
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uptime-kuma-claim
+  namespace: uptime-kuma
+spec:
+  accessModes:
+    - ReadWriteOnce # Or ReadWriteMany if your PV supports it
+  resources:
+    requests:
+      storage: 1Gi # Adjust as needed
+  volumeName: uptime-kuma # This is the crucial part - it links to your PV

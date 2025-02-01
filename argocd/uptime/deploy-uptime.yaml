@@ -49,19 +49,3 @@ spec:
     targetPort: 3001  # The port the container is listening on
   type: LoadBalancer
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: uptime-kuma-claim  # Name of your PVC
-  namespace: uptime-kuma   # Same namespace as your deployment
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: ""
-  volumeMode: Filesystem
-  nfs:
-    server: 192.168.10.10
-    path: /mnt/nfs-export/uptime-kuma
