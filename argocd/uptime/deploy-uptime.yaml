@@ -60,6 +60,8 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteOnce
+  storageClassName: ""
+  volumeMode: Filesystem
   nfs:
     server: 192.168.10.10
     path: /mnt/nfs-export/uptime-kuma
