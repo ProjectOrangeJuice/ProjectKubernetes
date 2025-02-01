@@ -56,6 +56,8 @@ metadata:
   name: uptime-kuma-claim  # Name of your PVC
   namespace: uptime-kuma   # Same namespace as your deployment
 spec:
+  capacity:
+    storage: 1Gi
   accessModes:
     - ReadWriteOnce
   nfs:
