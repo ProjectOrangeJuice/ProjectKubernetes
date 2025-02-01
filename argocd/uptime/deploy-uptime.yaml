@@ -1,0 +1,63 @@
+# Create uptime-kuma namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: uptime-kuma
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma  # Replace with your desired namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uptime-kuma
+  template:
+    metadata:
+      labels:
+        app: uptime-kuma
+    spec:
+      containers:
+      - name: uptime-kuma
+        image: louislam/uptime-kuma:latest
+        ports:
+        - containerPort: 3001
+        volumeMounts:
+        - name: uptime-kuma-data
+          mountPath: /app/data
+      volumes:
+      - name: uptime-kuma-data
+        persistentVolumeClaim:
+          claimName: uptime-kuma-claim  # Name of your PVC
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: uptime-kuma
+  namespace: uptime-kuma
+spec:
+  selector:
+    app: uptime-kuma
+  ports:
+  - protocol: TCP
+    port: 3001  # The port your service will expose
+    targetPort: 3001  # The port the container is listening on
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uptime-kuma-claim  # Name of your PVC
+  namespace: uptime-kuma   # Same namespace as your deployment
+spec:
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.10.10
+    path: /mnt/nfs-export/uptime-kuma
