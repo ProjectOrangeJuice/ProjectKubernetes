@@ -12,7 +12,7 @@ spec:
   volumeMode: Filesystem
   nfs:
     server: 192.168.10.10
-    path: /mnt/export-nfs/uptime-kuma
+    path: /mnt/export-nfs
 
 ---
 
