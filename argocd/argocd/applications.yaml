@@ -34,24 +34,6 @@ spec:
   sources: []
   project: default
 
---- 
-
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  namespace: argocd
-  name: longhorn-resource
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-  source:
-    path: argocd/longhorn
-    repoURL: https://github.com/ProjectOrangeJuice/ProjectKubernetes.git
-    targetRevision: HEAD
-    directory:
-      recurse: true
-  sources: []
-  project: default
 
 --- 
 
