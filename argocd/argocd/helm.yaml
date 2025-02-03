@@ -42,5 +42,5 @@ spec:
     helm:
       values: |
         nfs:
-          server=192.168.10.10
-          path=/mnt/export-nfs
+          server: 192.168.10.10
+          path: /mnt/export-nfs
