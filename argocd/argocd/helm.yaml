@@ -32,7 +32,8 @@ spec:
     repoURL: 'https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner'
     chart: nfs-subdir-external-provisioner
     targetRevision: 4.0.18
-    values: |
-      nfs:
-        server=192.168.10.10
-        path=/mnt/export-nfs
+    helm:
+      values: |
+        nfs:
+          server=192.168.10.10
+          path=/mnt/export-nfs
