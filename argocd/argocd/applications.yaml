@@ -14,6 +14,10 @@ spec:
       recurse: true
   sources: []
   project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
 
 --- 
 
@@ -33,6 +37,10 @@ spec:
       recurse: true
   sources: []
   project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
 
 --- 
 
