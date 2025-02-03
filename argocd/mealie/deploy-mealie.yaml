@@ -55,7 +55,7 @@ spec:
   - protocol: TCP
     port: 9000  # The port your service will expose
     targetPort: 9000  # The port the container is listening on
-  type: LoadBalancer
+  type: NodePort
 
 
 ---
