@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: 'https://traefik.github.io/charts'
     chart: traefik
-    targetRevision: 3.3.3
+    targetRevision: 34.2.0
   syncPolicy:
     automated:
       prune: false
