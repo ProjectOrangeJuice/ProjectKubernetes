@@ -12,6 +12,13 @@ spec:
     repoURL: 'https://traefik.github.io/charts'
     chart: traefik
     targetRevision: 34.2.0
+    helm:
+      values: |
+        providers:
+          kubernetesCRD:
+            allowCrossNamespace: true
+        dashboard:
+          enabled: true
   syncPolicy:
     automated:
       prune: false
