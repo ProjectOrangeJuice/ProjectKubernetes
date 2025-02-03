@@ -1,2 +1,3 @@
 roles/kubernetes/files/test-join
 priv-vars.yaml
+talos
