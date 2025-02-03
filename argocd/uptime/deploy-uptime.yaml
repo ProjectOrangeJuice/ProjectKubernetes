@@ -47,7 +47,7 @@ spec:
   - protocol: TCP
     port: 3001  # The port your service will expose
     targetPort: 3001  # The port the container is listening on
-  type: NodePort
+  type: ClusterIP
 
 
 ---
