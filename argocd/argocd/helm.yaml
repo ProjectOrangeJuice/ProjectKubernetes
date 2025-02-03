@@ -7,7 +7,29 @@ spec:
   project: default
   destination:
     server: https://kubernetes.default.svc
-  sources:
-  - repoURL: 'https://traefik.github.io/charts'
+    namespace: traefik-system
+  source:
+    repoURL: 'https://traefik.github.io/charts'
     chart: traefik
     targetRevision: 3.3.3
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: nfs-provisioner
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nfs-provisioner
+  source:
+    repoURL: 'https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner'
+    chart: nfs-subdir-external-provisioner
+    targetRevision: 4.0.18
+    values: |
+      nfs:
+        server=192.168.10.10
+        path=/mnt/export-nfs
