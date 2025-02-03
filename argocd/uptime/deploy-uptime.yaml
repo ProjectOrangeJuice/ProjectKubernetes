@@ -49,3 +49,18 @@ spec:
     targetPort: 3001  # The port the container is listening on
   type: LoadBalancer
 
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: uptime-kuma-claim
+  namespace: uptime-kuma
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
