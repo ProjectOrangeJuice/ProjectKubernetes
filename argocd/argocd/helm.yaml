@@ -63,12 +63,6 @@ spec:
     targetRevision: 2.2.22
     helm:
       values: |
-        ingress:
-          enabled: true
-          hosts:
-            - host: wiki.projectkube.com
-              paths:
-                - /
         postgresql:
           persistence:
             storageClass: nfs-client
