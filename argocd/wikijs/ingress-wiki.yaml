@@ -18,5 +18,5 @@ spec:
       kind: Rule
       services:
         - name: wiki
-          port: 443
+          port: 80
           serversTransport: default-insecure-transport@kubernetescrd
