@@ -44,25 +44,3 @@ spec:
         nfs:
           server: 192.168.10.10
           path: /mnt/export-nfs
-
----
-
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  namespace: argocd
-  name: wiki
-spec:
-  project: default
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: wiki
-  source:
-    repoURL: 'https://charts.js.wiki'
-    chart: wiki
-    targetRevision: 2.2.22
-    helm:
-      values: |
-        postgresql:
-          persistence:
-            storageClass: nfs-client
