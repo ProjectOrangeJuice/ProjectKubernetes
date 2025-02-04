@@ -3,3 +3,20 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: wiki
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wiki
+  namespace: wiki
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`wiki.projectkube.com`)
+      kind: Rule
+      services:
+        - name: wiki
+          port: 443
+          serversTransport: default-insecure-transport@kubernetescrd
