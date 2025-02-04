@@ -60,7 +60,7 @@ spec:
   source:
     repoURL: 'https://charts.js.wiki'
     chart: wiki
-    targetRevision: 2.5.306
+    targetRevision: 2.2.22
     helm:
       values: |
         ingress:
