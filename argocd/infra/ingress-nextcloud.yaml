@@ -8,8 +8,9 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`memo.projectkube.com`)
+    - match: Host(`nextcloud.projectkube.com`)
       kind: Rule
       services:
-        - name: memo
-          port: 5230
+        - name: nextcloud-aio-apache
+          port: 443
+          serversTransport: default-insecure-transport@kubernetescrd
