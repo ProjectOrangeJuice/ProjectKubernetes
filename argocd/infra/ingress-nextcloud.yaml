@@ -12,5 +12,5 @@ spec:
       kind: Rule
       services:
         - name: nextcloud-aio-apache
-          port: 443
+          port: 442
           serversTransport: default-insecure-transport@kubernetescrd
