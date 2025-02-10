@@ -102,3 +102,26 @@ spec:
 
 
 
+--- 
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: argocd
+  name: argocd-base
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    path: argocd/argocd-base
+    kustomize: {}
+    repoURL: https://github.com/ProjectOrangeJuice/ProjectKubernetes.git
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  sources: []
+  project: default
+
+
+
