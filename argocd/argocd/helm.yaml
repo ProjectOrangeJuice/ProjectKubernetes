@@ -51,7 +51,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   namespace: argocd
-  name: nextcloud
+  name: nextcloud-aio
 spec:
   project: default
   destination:
@@ -61,7 +61,7 @@ spec:
     - plugin:
         name: argocd-vault-plugin 
       repoURL: 'https://nextcloud.github.io/all-in-one/'
-      chart: nextcloud-aio
+      chart: nextcloud-aio/nextcloud-aio-helm-chart
       targetRevision: 10.5.0
       helm:
         valuesFiles:
