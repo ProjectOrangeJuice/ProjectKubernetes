@@ -118,8 +118,6 @@ spec:
     kustomize: {}
     repoURL: https://github.com/ProjectOrangeJuice/ProjectKubernetes.git
     targetRevision: HEAD
-    directory:
-      recurse: true
   sources: []
   project: default
 
