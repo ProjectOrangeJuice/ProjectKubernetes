@@ -45,27 +45,3 @@ spec:
           server: 192.168.100.69
           path: /export/kubernetes
 
----
-
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  namespace: argocd
-  name: nextcloud-aio
-spec:
-  project: default
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: nextcloud
-  sources:
-    - repoURL: 'https://nextcloud.github.io/all-in-one/'
-      chart: nextcloud-aio-helm-chart
-      targetRevision: 10.5.0
-      plugin:
-        name: argocd-vault-plugin-helm-with-values
-        env:
-          - name: HELM_ARGS
-            value: -f $values/argocd/nextcloud/nextcloud-values.yaml
-    - repoURL: 'https://github.com/ProjectOrangeJuice/ProjectKubernetes.git'
-      targetRevision: main
-      ref: values
