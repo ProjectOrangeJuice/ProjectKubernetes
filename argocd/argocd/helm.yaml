@@ -63,9 +63,9 @@ spec:
       targetRevision: 10.5.0
       plugin:
         name: argocd-vault-plugin-helm-with-values
-      helm:
-        valueFiles:
-          - $values/argocd/nextcloud/nextcloud-values.yaml
+        env:
+          - name: HELM_ARGS
+            value: -f $values/argocd/nextcloud/nextcloud-values.yaml
     - repoURL: 'https://github.com/ProjectOrangeJuice/ProjectKubernetes.git'
       targetRevision: main
       ref: values
