@@ -63,7 +63,6 @@ spec:
       targetRevision: 10.5.0
       helm:
         valuesFiles:
-          - $values/nextcloud-values.yaml
+          - $values/argocd/nextcloud/nextcloud-values.yaml
     - repoURL: 'https://github.com/ProjectOrangeJuice/ProjectKubernetes.git'
-      path: argocd/nextcloud
       ref: values
