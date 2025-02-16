@@ -1,0 +1,44 @@
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projectsync
+  namespace: memo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: projectsync
+  template:
+    metadata:
+      labels:
+        app: projectsync
+    spec:
+      containers:
+      - name: projectsync
+        image: projectorangejuice/projectsync:latest
+        env:
+        - name: MEMO_URL
+          value: "https://memo.projectkube.com" # Used to fetch resources
+        - name: GIT_URL
+          valueFrom:
+            secretKeyRef:
+              name: projectsync
+              key: GIT_URL
+
+--- 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: projectsync
+  namespace: memo
+spec:
+  selector:
+    app: projectsync
+  ports:
+  - protocol: TCP
+    port: 8080  # The port your service will expose
+    targetPort: 8080  # The port the container is listening on
+  type: ClusterIP
