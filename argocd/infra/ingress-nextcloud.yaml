@@ -14,3 +14,20 @@ spec:
         - name: nextcloud-aio-apache
           port: 442
           serversTransport: default-insecure-transport@kubernetescrd
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nextcloud-local
+  namespace: nextcloud
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`nc.projectkube.com`)
+      kind: Rule
+      services:
+        - name: nextcloud-aio-apache
+          port: 442
+          serversTransport: default-insecure-transport@kubernetescrd
